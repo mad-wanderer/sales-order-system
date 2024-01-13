@@ -1,5 +1,6 @@
 ﻿using ordering_and_sales_system.Domain.Entities;
 using ordering_and_sales_system.Infrastracture;
+using System.Data;
 
 namespace ordering_and_sales_system.Domain.Repositories
 {
@@ -20,17 +21,41 @@ namespace ordering_and_sales_system.Domain.Repositories
 
         public TransactionHistory GetTransactionHistoryByID(string transactionId)
         {
-            _databaseHelper.SelectRecord(tableName, new TransactionHistory(tr))
+            string constraints = "TransactionID = " + transactionId;
+
+            DataTable dataTable = _databaseHelper.SelectRecord(tableName, constraints);
+            DataRow dataRow = dataTable.Rows[0];
+            return new TransactionHistory(
+                dataRow["TransactionID"].ToString()!,
+                dataRow["OrderID"].ToString()!,
+                DateTime.Parse(dataRow["TransactionDate"].ToString()!),
+                dataRow["OrderStatus"].ToString()!
+                );
         }
 
         public List<TransactionHistory> GetAllTransactionHistory()
         {
-            throw new NotImplementedException();
+            DataTable dataTable = _databaseHelper.SelectAllRecord(tableName);
+
+            List<TransactionHistory> transactList = new List<TransactionHistory>();
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                TransactionHistory transactionHistory = new TransactionHistory (
+                        dataTable.Rows[i]["TransactionID"].ToString()!,
+                        dataTable.Rows[i]["OrderID"].ToString()!,
+                        DateTime.Parse(dataTable.Rows[i]["TransactionDate"].ToString()!),
+                        dataTable.Rows[i]["OrderStatus"].ToString()!
+                    );
+
+                transactList.Add( transactionHistory );
+            }
+            return transactList;
+
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _databaseHelper.Dispose();
         }
     }
 }
