@@ -20,7 +20,7 @@ namespace ordering_and_sales_system.Domain.Repositories
 
         public TransactionHistory GetTransactionHistoryByID(string transactionId)
         {
-            _databaseHelper.SelectRecord(tableName, new TransactionHistory(tr))
+            _databaseHelper.SelectRecord(tableName, new TransactionHistory(tr));
         }
 
         public List<TransactionHistory> GetAllTransactionHistory()

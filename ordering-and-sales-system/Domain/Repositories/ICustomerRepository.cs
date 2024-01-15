@@ -8,5 +8,6 @@ namespace ordering_and_sales_system.Domain.Repositories
         public void UpdateCustomer(Customer customer);
         public void DeleteCustomer(Customer customer);
         public Customer GetCustomerById(string id);
+        Customer GetCustomerByID(string id);
     }
 }
