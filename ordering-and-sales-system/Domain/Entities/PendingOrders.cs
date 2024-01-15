@@ -41,11 +41,5 @@
         public string? Price { get; set; }
         public string? Transaction_Date { get; set; }
         public string? Status { get; set; }
-        public string? Total { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? OrderID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? ProductID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? CustomerID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? ProductName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string? TransactionDate { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
