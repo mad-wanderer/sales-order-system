@@ -12,7 +12,7 @@ namespace ordering_and_sales_system.Infrastracture
 
         public DatabaseHelper()
         {
-            string ConnectionString = "server=localhost;user=root;database=cosdatabase;password=";
+            string ConnectionString = "Server=localhost;Database=order_sales_system;User=root;Password=;";
             _connectionManager = new DatabaseConnectionManager(ConnectionString);
             _connection = _connectionManager.Connection;
         }

@@ -3,7 +3,7 @@ using ordering_and_sales_system.Models;
 
 namespace ordering_and_sales_system.Services
 {
-    public class Service
+    public class TransactionHistoryService
     {
         private TransactionHistoryRepository transactRepository; /*class variable - camelCase; can be seen in class but outside method*/
 
@@ -15,7 +15,12 @@ namespace ordering_and_sales_system.Services
             return Model;
         }
 
-        public Service() /*constructor - modifier, classname; unang nagra-run when object instantiated*/
+        internal void Dispose()
+        {
+            transactRepository.Dispose();
+        }
+
+        public TransactionHistoryService() /*constructor - modifier, classname; unang nagra-run when object instantiated*/
         {
             transactRepository = new TransactionHistoryRepository(); /*object - new keyword*/
             Model = new TransactionHistoryModel();

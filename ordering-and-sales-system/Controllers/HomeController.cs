@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ordering_and_sales_system.Models;
 using System.Diagnostics;
+using ordering_and_sales_system.Services;
 
 namespace ordering_and_sales_system.Controllers
 {
@@ -28,10 +29,15 @@ namespace ordering_and_sales_system.Controllers
             return View();
         }
 
-        public IActionResult TransactionHistory()
-        {
-            return View();
-        }
+        [HttpGet]
+            public IActionResult TransactionHistory()
+            {
+                TransactionHistoryService transactionHistoryService = new TransactionHistoryService();
+                TransactionHistoryModel transactionHistoryModel = transactionHistoryService.Model;
+                transactionHistoryService.Dispose();
+
+                return View(transactionHistoryModel);
+            }
 
         public IActionResult Customer()
         {
